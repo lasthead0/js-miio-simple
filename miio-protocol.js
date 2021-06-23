@@ -6,7 +6,6 @@ const miioPacket = require('./miio-packet');
 const HELLO_MESSAGE = '21310020ffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
 
 module.exports = class miioProtocol {
-    #port = 54321;
     #ip = '';
     #timeout = 0;
 
@@ -21,7 +20,7 @@ module.exports = class miioProtocol {
     }
 
     /* */
-    socketSendRecv(cmd, port, ip, timeout = this.#timeout) {
+    socketSendRecv(cmd, ip, port = 54321, timeout = this.#timeout) {
         var timeout1 = undefined;
         return new Promise((resolve, reject) => {
             const socket = dgram.createSocket('udp4');
@@ -66,7 +65,7 @@ module.exports = class miioProtocol {
 
     /* */
     async discover() {
-        const msg = await this.socketSendRecv(HELLO_MESSAGE, this.#port, this.#ip);
+        const msg = await this.socketSendRecv(HELLO_MESSAGE, this.#ip);
 
         return this.recvAnswer(msg);
     }
@@ -88,7 +87,7 @@ module.exports = class miioProtocol {
             return [false, new Error('Incorrect command format')];
         }
         const msg1 = this.#miPacket.messagePack(Buffer.from(cmd2, 'utf8').toString('hex'));
-        const msg = await this.socketSendRecv(msg1, this.#port, this.#ip);
+        const msg = await this.socketSendRecv(msg1, this.#ip);
 
         return this.recvAnswer(msg);
     }
