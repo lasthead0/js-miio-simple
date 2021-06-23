@@ -1,0 +1,22 @@
+{
+  "name": "js-miio-simple",
+  "description": "Simple javascript miIO protocol implementation",
+  "version": "0.0.1",
+  "main": "miio-protocol.js",
+  "author": "Evgenii Abramov <john.abramov@gmail.com>",
+  "keywords": ["javascript", "js", "miIO"],
+  "license": "MIT",
+  "homepage": "https://github.com/lasthead0/js-miio-simple#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lasthead0/js-miio-simple.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lasthead0/js-miio-simple/issues"
+  },
+  "dependencies": {
+    "yargs": "^17.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {}
+}
