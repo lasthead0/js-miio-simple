@@ -20,10 +20,10 @@ module.exports = class miioPacket {
     #devicetype = '0000';
     #deviceid = '0000';
     #ts = '00000000';
-    #tsdiff = 0;
-
-    #data = '';
     #checksum = '';
+    #data = '';
+
+    #tsdiff = 0;
 
     #token = '';
     #key = '';
@@ -36,6 +36,7 @@ module.exports = class miioPacket {
             this.#key = md5(b(token));
             this.#iv = md5(b(this.#key + this.#token));
         } else {
+            this.#token = '';
             this.#key = '';
             this.#iv = '';
         }
