@@ -73,13 +73,18 @@ const testToken = new RegExp(/^[A-Fa-f0-9]{32}$/gm);
             console.error(msg.stack);
         }
 
-        const [res1, msg1] = await miIO.cmdSend(cmd);
-        if (res1) {
-            if (debug) console.log(msg1[0]);
-            console.log(`Device (${ip}) is available and answered:`);
-            console.log(msg1[1]);
-        } else {
-            console.error(msg1.stack);
+        try {
+            const [res1, msg1] = await miIO.cmdSend(JSON.parse(cmd));
+
+            if (res1) {
+                if (debug) console.log(msg1[0]);
+                console.log(`Device (${ip}) is available and answered:`);
+                console.log(msg1[1]);
+            } else {
+                console.error(msg1.stack);
+            }
+        } catch(err) {
+            console.error(err);
         }
     }
 })();
