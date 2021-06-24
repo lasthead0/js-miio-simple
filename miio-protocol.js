@@ -72,21 +72,14 @@ module.exports = class miioProtocol {
 
     /* */
     async cmdSend(cmd) {
-        let cmd2 = '';
-        if (typeof cmd == 'string') {
-            try {
-                const cmd1 = JSON.parse(cmd);
-                cmd1.id = Math.floor(Math.random() * 99998) + 1;
-                cmd2 = JSON.stringify(cmd1);
-            } catch (err) {
-                return [false, err];
-            }    
-        } else if (typeof cmd == 'object') {
-            cmd2 = JSON.stringify(cmd);
+        let cmd1 = '';
+        if (typeof cmd == 'object') {
+            cmd.id = Math.floor(Math.random() * 99998) + 1;
+            cmd1 = JSON.stringify(cmd);
         } else {
             return [false, new Error('Incorrect command format')];
         }
-        const msg1 = this.#miPacket.messagePack(Buffer.from(cmd2, 'utf8').toString('hex'));
+        const msg1 = this.#miPacket.messagePack(Buffer.from(cmd1, 'utf8').toString('hex'));
         const msg = await this.socketSendRecv(msg1, this.#ip);
 
         return this.recvAnswer(msg);
