@@ -128,4 +128,4 @@ module.exports = class miioPacket {
     printPacket() {
         return [this.printHeader(), this.printData()];
     }
-}
+};

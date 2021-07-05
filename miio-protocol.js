@@ -25,12 +25,12 @@ module.exports = class miioProtocol {
         return new Promise((resolve, reject) => {
             const socket = dgram.createSocket('udp4');
 
-            socket.on('error', (err) => {
+            socket.on('error', err => {
                 socket.close();
                 reject(err);
             });
     
-            socket.on('message', (msg) => {
+            socket.on('message', msg => {
                 socket.disconnect();
                 socket.close();
 
@@ -84,4 +84,4 @@ module.exports = class miioProtocol {
 
         return this.recvAnswer(msg);
     }
-}
+};

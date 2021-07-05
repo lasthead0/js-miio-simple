@@ -38,7 +38,7 @@ const testToken = new RegExp(/^[A-Fa-f0-9]{32}$/gm);
         if (ip != undefined && testIP.test(ip) == true) {
             const miIO = new miioProtocol(ip, token);
 
-            if (debug) console.log("sending HELLO message.");
+            if (debug) console.log('sending HELLO message.');
 
             const [res, msg] = await miIO.discover();
             if (res) {
@@ -48,7 +48,7 @@ const testToken = new RegExp(/^[A-Fa-f0-9]{32}$/gm);
                 console.error(msg.stack);
             }
         } else if (ip == undefined || testIP.test(ip) != true) {
-            console.error("Argument --ip is not set or it is incorrect.");
+            console.error('Argument --ip is not set or it is incorrect.');
             process.exit(-1);
         }
     }
@@ -56,12 +56,12 @@ const testToken = new RegExp(/^[A-Fa-f0-9]{32}$/gm);
     /* if --cmd is set */
     if (cmd != undefined) {
         if (ip == undefined || testIP.test(ip) != true) {
-            console.error("You set --cmd, but --ip is not set or it is incorrect.")
-            process.exit(-1)
+            console.error('You set --cmd, but --ip is not set or it is incorrect.');
+            process.exit(-1);
         }
         if (token == undefined || testToken.test(token) != true) {
-            console.error("You set --cmd, but --token is not set or it is incorrect.")
-            process.exit(-1)
+            console.error('You set --cmd, but --token is not set or it is incorrect.');
+            process.exit(-1);
         }
 
         const miIO = new miioProtocol(ip, token);
