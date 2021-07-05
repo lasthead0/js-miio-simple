@@ -1,0 +1,21 @@
+{
+    "env": {
+        "node": true
+    },
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true
+        }
+    },
+    "rules": {
+        "arrow-parens": ["error", "as-needed"],
+        "indent": ["error", 4, {"SwitchCase": 1, "MemberExpression": 0}],
+        "no-empty": ["error", {"allowEmptyCatch": true}],
+        "quotes": ["error", "single", {"allowTemplateLiterals": true}],
+        "semi": ["error", "always", {"omitLastInOneLineBlock": true}]
+    }
+}
