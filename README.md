@@ -20,9 +20,7 @@ const miioProtocol = require('js-miio-simple');
 ```
 
 ```
-const miIO = new miioProtocol(ip, token);
-const miIO = new miioProtocol(ip, token, timeout);
-const miIO = new miioProtocol(ip, token, logger, timeout);
+const miIO = new miioProtocol(ip, token, [logger], [timeout]);
 ```
 Создаём экземпляр класса для сетевого взаимодействия.
 
@@ -30,7 +28,7 @@ const miIO = new miioProtocol(ip, token, logger, timeout);
 
 `timeout` - по умолчания равен `5000 мс`.
 
-`logger` - по умолчанию вывод в консоль `msg => console.dir(msg, {depth: null})`. На данный момент, для отладки, выводится `cmd` в формате JSON и текста, и ошибка сокета.
+`logger` - по умолчанию вывод в консоль `msg => console.dir(msg, {depth: null})`. Для "отключения" лога можно передать функцию без вывода, например `() => true`;
 
 
 #### discover()
