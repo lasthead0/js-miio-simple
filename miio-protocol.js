@@ -97,6 +97,7 @@ module.exports = class miioProtocol {
             return [false, new Error('Incorrect command format')];
         }
         const msg1 = this.#miPacket.messagePack(Buffer.from(cmd1, 'utf8').toString('hex'));
+        this.#LOGGER(msg1);
         const msg = await this.socketSendRecv(msg1, this.#ip);
 
         return this.recvAnswer(msg);
