@@ -114,7 +114,7 @@ module.exports = class miioPacket {
             `deviceid: ${this.#deviceid}`, 
             `ts: ${this.#ts}`,
             `checksum: ${this.#checksum}`
-        ].join('\n');
+        ].join('; ');
 
         return header;
     }
