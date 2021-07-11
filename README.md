@@ -30,6 +30,12 @@ const miIO = new miioProtocol(ip, token, [logger], [timeout]);
 
 `logger` - по умолчанию вывод в консоль `msg => console.dir(msg, {depth: null})`. Для "отключения" лога можно передать функцию без вывода, например `() => true`;
 
+Префикс&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Описание
+--------|--------
+cmdSend_1_ | Вывод команды, переданной для отправки до установки случного `id`
+cmdSend_2_ | Вывод команды, подготовленной для отправки с установленным случайным `id`
+
+
 
 #### discover()
 ```
