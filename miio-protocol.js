@@ -28,7 +28,6 @@ module.exports = class miioProtocol {
 
         this.#miPacket = new miioPacket();
         this.#miPacket.token = token;
-        this.#LOGGER(this.#miPacket.token);
     }
 
     /* */
@@ -97,7 +96,7 @@ module.exports = class miioProtocol {
             return [false, new Error('Incorrect command format')];
         }
         const msg1 = this.#miPacket.messagePack(Buffer.from(cmd1, 'utf8').toString('hex'));
-        this.#LOGGER(msg1);
+        this.#LOGGER(`cmdSend_3_ ${this.#miPacket.printPacket().join('; ')}`);
         const msg = await this.socketSendRecv(msg1, this.#ip);
 
         return this.recvAnswer(msg);
