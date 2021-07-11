@@ -87,8 +87,8 @@ module.exports = class miioProtocol {
     /* */
     async cmdSend(cmd) {
         let cmd1 = '';
-        this.#LOGGER(cmd);
         if (typeof cmd == 'object') {
+            this.#LOGGER(JSON.stringify(cmd));
             cmd.id = Math.floor(Math.random() * 99998) + 1;
             cmd1 = JSON.stringify(cmd);
             this.#LOGGER(cmd1);
