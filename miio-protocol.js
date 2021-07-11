@@ -88,10 +88,10 @@ module.exports = class miioProtocol {
     async cmdSend(cmd) {
         let cmd1 = '';
         if (typeof cmd == 'object') {
-            this.#LOGGER(JSON.stringify(cmd));
+            this.#LOGGER(`cmdSend_1_ ${JSON.stringify(cmd)}`);
             cmd.id = Math.floor(Math.random() * 99998) + 1;
             cmd1 = JSON.stringify(cmd);
-            this.#LOGGER(cmd1);
+            this.#LOGGER(`cmdSend_2_ ${JSON.stringify(cmd)}`);
         } else {
             return [false, new Error('Incorrect command format')];
         }
