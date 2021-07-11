@@ -33,7 +33,7 @@ module.exports = class miioPacket {
     set token(token) {
         if (typeof token == 'string' && RegExp(/^[A-Fa-f0-9]{32}$/gm).test(token) == true) {
             this.#token = token;
-            this.#key = md5(b(token));
+            this.#key = md5(b(this.#token));
             this.#iv = md5(b(this.#key + this.#token));
         } else {
             this.#token = '';
