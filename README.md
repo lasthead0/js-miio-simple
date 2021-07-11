@@ -30,11 +30,12 @@ const miIO = new miioProtocol(ip, token, [logger], [timeout]);
 
 `logger` - по умолчанию вывод в консоль `msg => console.dir(msg, {depth: null})`. Для "отключения" лога можно передать функцию без вывода, например `() => true`;
 
+***Описание префиксов отладочных сообщений***
 Префикс&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Описание
 --------|--------
 cmdSend_1_ | Вывод команды, переданной для отправки до установки случного `id`
 cmdSend_2_ | Вывод команды, подготовленной для отправки с установленным случайным `id`
-
+cmdSend_3_ | Вывод заголовков и данных пакета, подготовленного к отправке
 
 
 #### discover()
@@ -59,6 +60,15 @@ const [res, msg] = await miIO.cmdSend(cmd);
 **msg** (*string или Error*) Если `res == true`, то `msg` вернёт ответ устройства ([`заголовок`, `данные`]). Если `res == false`, то `msg` вернёт экземпляр ошибки (`new Error()`)
 
 В качестве команды в параметре `cmd` должен быть передан JSON-объект `{id, method, params}` (например, `{"id":0,"method":"get_status","params":[]}`). В `id` команды можно указать любое число, оно будет заменено на случайное при отправке команды.
+
+
+## Важное
+Перед отправкой комманды необходимо получить `devicetype`, `deviceid` и `uptime` (для расчёта смещения времени) устройства. Для этого необходимо перед вызовом функции `cmdSend(cmd)` выполнить `discover()`. Например,
+```
+const miIO = new miioProtocol(ip, token);
+await miIO.discover();
+const [res, msg] = await miIO.cmdSend(cmd);
+```
 
 
 ## Команды CLI
