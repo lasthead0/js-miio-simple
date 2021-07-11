@@ -28,6 +28,7 @@ module.exports = class miioProtocol {
 
         this.#miPacket = new miioPacket();
         this.#miPacket.token = token;
+        this.#LOGGER(this.#miPacket.token);
     }
 
     /* */
